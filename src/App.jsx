@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
 import Lenis from 'lenis'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Experience from './components/Experience'
 import Navbar from './components/Navbar'
 import CinematicBars from './components/CinematicBars'
+import Preloader from './components/Preloader'
 import Hero from './sections/Hero'
 import Performance from './sections/Performance'
 import Design from './sections/Design'
@@ -18,6 +19,7 @@ gsap.registerPlugin(ScrollTrigger)
 function App() {
   const [isHovered, setHovered] = useState(false)
   const [isDragging, setDragging] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
   const canvasRef = useRef(null)
   
   useEffect(() => {
@@ -53,6 +55,12 @@ function App() {
 
   return (
     <main className={`relative w-full bg-black ${isCinematicActive ? 'cinematic-active' : ''}`}>
+      <AnimatePresence mode="wait">
+        {!isLoaded && (
+          <Preloader onComplete={() => setIsLoaded(true)} />
+        )}
+      </AnimatePresence>
+
       <Navbar />
       <CinematicBars active={isCinematicActive} />
       
