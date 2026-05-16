@@ -11,11 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-public
-sections
-public/videos/*.mp4
-public/models/*.glb
-public/images/*.png
+ 
 
 # Editor directories and files
 .vscode/*
