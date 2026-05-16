@@ -12,9 +12,9 @@ dist
 dist-ssr
 *.local
 
-*.mp4
-*.glb
-*.png
+public/videos/*.mp4
+public/models/*.glb
+public/images/*.png
 
 # Editor directories and files
 .vscode/*
