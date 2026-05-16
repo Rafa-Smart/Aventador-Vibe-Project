@@ -32,7 +32,6 @@ function Scene({ isHovered, setHovered, isDragging, setDragging }) {
     })
 
     // STAGGERED FLOW: R -> L -> R -> L -> C
-    
     // 0 -> 0.5: Hero (Center) to Section 1 (Car moves LEFT because content is RIGHT)
     tl.to(targets.current, { x: -3, y: -0.5, z: 2, rotY: Math.PI / 4, ease: "none" }, 0)
     
