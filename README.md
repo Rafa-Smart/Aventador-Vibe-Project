@@ -1,1 +1,4 @@
-projek saya nuk vibe coding
+latihan vibe coding
+vibe coding parah hahahaha
+
+link : 
