@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 export default function CTA() {
   return (
-    <section className="relative h-screen w-full flex items-center justify-start px-10 md:px-32 text-left overflow-hidden">
+    <section id="cta" className="relative h-screen w-full flex items-center justify-start px-10 md:px-32 text-left overflow-hidden">
       <div className="absolute inset-0 bg-black/40 z-0" />
 
       <div className="z-10 relative max-w-4xl py-20">

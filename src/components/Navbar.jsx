@@ -8,11 +8,20 @@ export default function Navbar() {
   const menuItems = [
     { title: 'PERFORMANCE', href: '#performance' },
     { title: 'DESIGN', href: '#design' },
-    { title: 'HERITAGE', href: '#heritage' },
-    { title: 'CONFIGURATOR', href: '#configurator' },
-    { title: 'DEALERS', href: '#dealers' },
-    { title: 'MUSEUM', href: '#museum' },
+    { title: 'TECH SPECS', href: '#techspecs' },
+    { title: 'INTERIOR', href: '#interior' },
+    { title: 'TEST DRIVE', href: '#cta' },
   ]
+
+  const handleScrollTo = (e, href) => {
+    e.preventDefault()
+    const targetId = href.replace('#', '')
+    const targetElement = document.getElementById(targetId)
+    if (targetElement) {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+    setIsOpen(false)
+  }
 
   return (
     <>
@@ -23,6 +32,7 @@ export default function Navbar() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
           className="flex items-center gap-3 pointer-events-auto cursor-pointer group"
+          onClick={(e) => handleScrollTo(e, '#hero')}
         >
           <div className="w-8 h-10 relative">
             <svg viewBox="0 0 100 120" className="w-full h-full fill-white group-hover:fill-lambo-purple-neon transition-colors duration-500">
@@ -43,13 +53,14 @@ export default function Navbar() {
           transition={{ duration: 1, delay: 0.5 }}
           className="hidden lg:flex items-center gap-12 pointer-events-auto"
         >
-          {['PERFORMANCE', 'DESIGN', 'HERITAGE'].map((item) => (
+          {menuItems.map((item) => (
             <a 
-              key={item} 
-              href={`#${item.toLowerCase()}`}
+              key={item.title} 
+              href={item.href}
+              onClick={(e) => handleScrollTo(e, item.href)}
               className="text-[8px] font-bold tracking-[0.4em] text-white/30 hover:text-white transition-colors duration-300 relative group"
             >
-              {item}
+              {item.title}
               <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-px bg-lambo-purple-neon group-hover:w-full transition-all duration-500" />
             </a>
           ))}
@@ -100,7 +111,7 @@ export default function Navbar() {
                 <motion.a
                   key={item.title}
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleScrollTo(e, item.href)}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 + idx * 0.1, duration: 0.8 }}

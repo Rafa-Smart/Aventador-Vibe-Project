@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 export default function TechSpecs() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-end px-10 md:px-32 overflow-hidden">
+    <section id="techspecs" className="relative min-h-screen w-full flex items-center justify-end px-10 md:px-32 overflow-hidden">
       <div className="max-w-2xl text-right relative z-10 py-20">
         <motion.div
           initial={{ opacity: 0, x: 100 }}

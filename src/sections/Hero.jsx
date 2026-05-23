@@ -3,7 +3,7 @@ import { ChevronDown } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section className="relative h-screen w-full overflow-hidden flex flex-col items-start justify-center px-10 md:px-24">
+    <section id="hero" className="relative h-screen w-full overflow-hidden flex flex-col items-start justify-center px-10 md:px-24">
       {/* Cinematic Background Video */}
       <div className="absolute inset-0 z-0">
         <video 

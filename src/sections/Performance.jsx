@@ -8,7 +8,7 @@ const stats = [
 
 export default function Performance() {
   return (
-    <section className="relative min-h-screen w-full flex items-center justify-end px-10 md:px-32 overflow-hidden">
+    <section id="performance" className="relative min-h-screen w-full flex items-center justify-end px-10 md:px-32 overflow-hidden">
       <div className="max-w-2xl text-right relative z-10 py-20">
         <motion.div
           initial={{ opacity: 0, x: 50 }}

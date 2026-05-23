@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 export default function Interior() {
   return (
-    <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black text-center px-10">
+    <section id="interior" className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black text-center px-10">
       {/* Cinematic Reveal Background */}
       <motion.div 
         initial={{ opacity: 0, scale: 1.2 }}
