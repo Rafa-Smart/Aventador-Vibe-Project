@@ -29,6 +29,8 @@ function App() {
       smoothWheel: true,
     })
 
+    window.lenis = lenis // Expose globally for Navbar
+
     function raf(time) {
       lenis.raf(time)
       requestAnimationFrame(raf)

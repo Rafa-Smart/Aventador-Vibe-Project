@@ -15,12 +15,24 @@ export default function Navbar() {
 
   const handleScrollTo = (e, href) => {
     e.preventDefault()
+    setIsOpen(false)
+    
     const targetId = href.replace('#', '')
     const targetElement = document.getElementById(targetId)
+    
     if (targetElement) {
-      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      try {
+        if (window.lenis) {
+          // Lenis bisa menerima string selector atau element
+          window.lenis.scrollTo(targetElement)
+        } else {
+          targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      } catch (err) {
+        console.warn('Lenis scroll failed, falling back to native', err)
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
-    setIsOpen(false)
   }
 
   return (
