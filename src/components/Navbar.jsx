@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X } from 'lucide-react'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
 
   const menuItems = [
     { title: 'PERFORMANCE', href: '#performance' },
@@ -12,6 +13,28 @@ export default function Navbar() {
     { title: 'INTERIOR', href: '#interior' },
     { title: 'TEST DRIVE', href: '#cta' },
   ]
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { threshold: 0.5 } // Set section active when it's 50% visible
+    )
+
+    // Observe all sections including hero
+    const sections = ['hero', 'performance', 'design', 'techspecs', 'interior', 'cta']
+    sections.forEach((id) => {
+      const element = document.getElementById(id)
+      if (element) observer.observe(element)
+    })
+
+    return () => observer.disconnect()
+  }, [])
 
   const handleScrollTo = (e, href) => {
     e.preventDefault()
@@ -65,17 +88,29 @@ export default function Navbar() {
           transition={{ duration: 1, delay: 0.5 }}
           className="hidden lg:flex items-center gap-12 pointer-events-auto"
         >
-          {menuItems.map((item) => (
-            <a 
-              key={item.title} 
-              href={item.href}
-              onClick={(e) => handleScrollTo(e, item.href)}
-              className="text-[8px] font-bold tracking-[0.4em] text-white/30 hover:text-white transition-colors duration-300 relative group"
-            >
-              {item.title}
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-px bg-lambo-purple-neon group-hover:w-full transition-all duration-500" />
-            </a>
-          ))}
+          {menuItems.map((item) => {
+            const isActive = activeSection === item.href.replace('#', '')
+            return (
+              <a 
+                key={item.title} 
+                href={item.href}
+                onClick={(e) => handleScrollTo(e, item.href)}
+                className={`text-[8px] font-bold tracking-[0.4em] transition-colors duration-300 relative group ${isActive ? 'text-white' : 'text-white/30 hover:text-white'}`}
+              >
+                {item.title}
+                {isActive && (
+                  <motion.span 
+                    layoutId="activeUnderline"
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-full h-px bg-lambo-purple-neon" 
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
+                {!isActive && (
+                  <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-0 h-px bg-lambo-purple-neon group-hover:w-full transition-all duration-500" />
+                )}
+              </a>
+            )
+          })}
         </motion.div>
 
         {/* Menu Toggle Button */}
