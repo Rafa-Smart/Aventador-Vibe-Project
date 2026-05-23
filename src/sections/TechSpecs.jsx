@@ -17,6 +17,17 @@ export default function TechSpecs() {
             FORGED IN <br /> <span className="text-lambo-purple-neon italic">SILENCE.</span>
           </h2>
           
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: false }}
+            className="text-white/50 text-base md:text-lg leading-relaxed font-light max-w-lg italic mb-16 ml-auto"
+          >
+            "Precision engineered down to the microscopic level. The Aventador utilizes advanced 
+            carbon fiber technology and aerospace-grade materials to ensure maximum rigidity and performance."
+          </motion.p>
+          
           <div className="grid grid-cols-1 gap-12">
             {[
               { label: "CHASSIS", value: "Carbon Fiber Monocoque", detail: "Ultimate structural rigidity" },

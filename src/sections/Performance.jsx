@@ -23,6 +23,17 @@ export default function Performance() {
             PURE <br /> <span className="text-lambo-purple-neon italic">PERFORMANCE.</span>
           </h2>
           
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            viewport={{ once: false }}
+            className="text-white/50 text-base md:text-lg leading-relaxed font-light max-w-lg italic mb-16 ml-auto"
+          >
+            "The heart of the beast. A naturally aspirated V12 engine that delivers unrelenting power, 
+            pushing the boundaries of acceleration and top speed to unimaginable limits."
+          </motion.p>
+          
           <div className="flex flex-col items-end gap-12">
             {stats.map((stat, idx) => (
               <motion.div 
